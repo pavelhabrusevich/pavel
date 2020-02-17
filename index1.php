@@ -22,7 +22,8 @@ $obj2 = new Second();
 echo $obj2->getClassname();
 echo $obj2->getLetter();
 
-// изначально такой вариант был, но метод getClassname() не переопределяется в кдассе Second2. Соответственно возвращал имя класса First2. Почему так?
+// изначально такой вариант был, но метод getClassname() не переопределяется в кдассе Second2.
+//Соответственно возвращал имя класса First2. Почему так?
 /*class First2{
     public function getClassname(){
         return __CLASS__ . "<br/>";
