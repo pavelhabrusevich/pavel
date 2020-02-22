@@ -1,5 +1,5 @@
-<!--
-Реализовать четыре класса : Fruit, Banana, Potato, Plant
+<?php
+/*Реализовать четыре класса : Fruit, Banana, Potato, Plant
 Plant родитель для Potato и Fruit, Fruit родитель для Banana
 Реализовать методы
 getWeight() - возвращает средний вес
@@ -7,32 +7,64 @@ getTaxonomy() - возвращает фрукт это или овощ
 Реализовать конструктор в который передаются высота, ширина и длина и требуется реализовать функцию,
 которая будет считать объём плода (будем считать, что они все параллелепипеды)
 Также реализовать константы в классах для имени этого овобща или фрукта на Французском языке.
-Использовать всю мощь public, private и protected свойств-->
-<?php
+Использовать всю мощь public, private и protected свойств
+вопросы:
+- можно ли константу запихнуть в конструктор?
+- мне очень не нравится метод getTaxonomy(), поттому что нет класса ОВОЩИ аналогичного fruit.
+были мысли запихнуть этот метод в класс Plant а далее в проверять: если  */
 class Plant{
-    private $length, $width, $height;
-
-    public function __construct($length, $width, $height)
+    private $length, $width, $height, $plantNameName;
+    public $averageWeight = [];
+    public function __construct($length, $width, $height, $plantName)
     {
-        echo "объём " . $size = $length * $width * $height . " единиц квадратных<br/>";
+        return "Объём самой большой " . $plantName . " " . $size = $length * $width * $height . " единиц.<br/>";
+    }
+    public function getWeight($plantName)
+    {
+        $allPlants = $this->averageWeight;
+        if (!empty($allPlants)){
+            return "Средний вес $plantName " . $allPlants = array_sum($allPlants)/count($allPlants) . ".<br/>";
+        } else echo "Насыпь $plantName";
     }
 }
-//$obj = new Plant(2,3,4);
 
 class Potato extends Plant {
-    const POTATO = "pommes de terre";
-    public function frenchName(){
-        if (defined("self::POTATO")) echo self::POTATO;
+    private const POTATO = "Pommes de terre\n";
+    public function getTaxonomy(){
+        return "Овощ" . "<br/>";
+    }
+    public function potatoFrenchName()
+    {
+        if (defined("self::POTATO")) return self::POTATO . "<br/>";
     }
 }
-//$obj = new Potato(4,8,7);
-//$obj -> frenchName();
 
-class Fruit extends Plant {
-
+class Fruit extends Plant{
+    public function getTaxonomy(){
+        return "Фрукт" . "<br/>";
+    }
 }
-
 
 class Banana extends Fruit{
-
+    private const BANANA = "La banane\n";
+    public function bananoFrenchName()
+    {
+        if (defined("self::BANANA")) return self::BANANA . "<br/>";
+    }
 }
+
+// Объект "картоха"
+$obj = new Potato(2,3,4, "картохи");
+echo $obj->getTaxonomy();
+echo $obj->potatoFrenchName();
+echo $obj->__construct(2,4,3,"картохи");
+$obj->averageWeight = [2,2,9];
+echo $obj->getWeight("картохи");
+
+// Объект "Банан"
+$obj2 = new Banana(8,3,4, "бананчиков");
+echo $obj2->getTaxonomy();
+echo $obj2->bananoFrenchName();
+echo $obj2->__construct(8,3,4, "бананчиков");
+$obj2->averageWeight = [2,4,3];
+echo $obj2->getWeight("бананчиков");
